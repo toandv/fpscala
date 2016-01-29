@@ -1,5 +1,6 @@
 # Programming paradigms
-1. Imperative Programming 
+
+## Imperative Programming 
   
   Imperative programming is about:
   * modifying mutable variables
@@ -12,7 +13,7 @@
   * Variable dereferences ~= load instructions
   * Variable assignments ~= store instructions
   * Control structures ~= jumps
-2. What is a Theory
+## What is a Theory
   A theory consists of:
   
   * one ore more data types
@@ -21,7 +22,7 @@
 
   Normally, a theory does not describle mutations, meaning changing a thing while keeping its identity the same.
 
-3. Consequences for Programming 
+## Consequences for Programming 
   If we want to implemnt high-level concepts following their mathematical theories, there's no place for mutation:
   * The theories do not admint it
   * Mutation can destroy useful laws in theories 
@@ -31,7 +32,7 @@
   * avoid mutations,
   * have powerful ways to abstract and compose functions
 
-4. Functional Programming
+## Functional Programming
   * In a restricted sense, a FP language is one which does not have variables, assignments, or imperative control structures
   * In a wider sense, a FP language enables the constructions of elegant programs that focus on functions
   * Functions are first-class citizens  
