@@ -13,6 +13,7 @@
   * Variable dereferences ~= load instructions
   * Variable assignments ~= store instructions
   * Control structures ~= jumps
+
 ## What is a Theory
   A theory consists of:
   
