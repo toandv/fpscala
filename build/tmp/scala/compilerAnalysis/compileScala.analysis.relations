@@ -1,0 +1,9 @@
+products:
+   src/main/scala/Library.scala -> build/classes/main/Library.class
+binary dependencies:
+   src/main/scala/Library.scala -> /home/toan/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.11.8/ddd5a8bced249bedd86fb4578a39b9fb71480573/scala-library-2.11.8.jar
+   src/main/scala/Library.scala -> /home/toan/tools/jdk1.8.0_77/jre/lib/rt.jar
+source dependencies:
+external dependencies:
+class names:
+   src/main/scala/Library.scala -> Library
