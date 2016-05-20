@@ -1,3 +1,4 @@
 /.gradle
 /.idea
-# Created by .ignore support plugin (hsz.mobi)
+/build
+gradle

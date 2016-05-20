@@ -1,4 +1,4 @@
-# Higher-Order Functions
+# _Higher-Order Functions_
 
 Functional languages treat functions as first-class values.
 

@@ -11,7 +11,7 @@ object TailRec extends App {
       if (n <= 0) acc
       else loop(n * acc, n - 1)
 
-    def loop1(acc: Long, n: Long): Long = {
+    def whileLoop(acc: Long, n: Long): Long = {
       var acc1 = acc
       var n1 = n
 
@@ -21,10 +21,13 @@ object TailRec extends App {
       }
       acc1
     }
-    loop1(1, n)
+    whileLoop(1, n)
   }
 
   println(factorial(25))
   println(tailrecFactorial(25))
+
+  val f = factorial _
+  println(f)
 
 }
