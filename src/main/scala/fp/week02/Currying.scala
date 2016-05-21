@@ -25,8 +25,10 @@ object Currying extends App {
     loop(a, 0)
   }
 
+  def sumCubes = sum1(x => x * x * x) _
+
   def sum11(f: Int => Int)(a: Int, b: Int): Int = {
-    if (a > b) 0 else f(a) + (sum11(f))(a, b);
+    if (a > b) 0 else f(a) + (sum11(f)) (a + 1, b);
   }
 
 
@@ -40,8 +42,32 @@ object Currying extends App {
       else f(a) + sumF(a + 1, b)
     sumF
   }
+
+  // any difference ?
+  sum11(a => a + 2)(1, 2)
+  sum2(a => a + 2)(1, 2)
+
+  def sum3(f: Int => Int): (Int, Int) => Int = {
+    def sumF(a: Int, b: Int): Int = {
+      @tailrec
+      def loop(a: Int, acc: Int): Int = {
+        if (a > b) acc
+        else loop(a + 1, f(a) + acc)
+      }
+      loop(a, 0)
+    }
+    sumF
+  }
+
   def sumInts1 = sum2(a => a)
-  println(sumInts1(1, 3))
-  println((sum2(a => a * 2))(1, 3)) // f(x) * g(x) = f(g(x)
+
+  val s1 = sumInts1(1, 3)
+  val s2 = sum2(a => a * 2)(1, 3)
+  val s3 = sum3(a => a * 2)(1, 3)
+
+  println(s1)
+  println(s2)
+  println(s3)
+
 }
 

@@ -5,10 +5,7 @@ import scala.annotation.tailrec
 /**
   * Created by toan on 5/17/16.
   */
-object SquareRoot {
-  def main(args: Array[String]) {
-    println("Welcome to the Scala worksheet")
-
+object SquareRoot extends  App {
     def abs(x: Double) = if (x < 0) -x else x
 
     def sqrt(x: Double) = {
@@ -37,7 +34,7 @@ object SquareRoot {
       def improve(guess: Double): Double =
         (guess + x / guess) / 2
       var guess: Double = 1
-      while(!isGoodEnough(guess)) {
+      while (!isGoodEnough(guess)) {
         guess = improve(guess)
       }
       guess
@@ -47,5 +44,4 @@ object SquareRoot {
     val s4 = sqrt1(1e60)
     println(s3)
     println(s4)
-  }
 }
