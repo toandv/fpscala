@@ -16,6 +16,11 @@ object Rational extends App {
   val x = new Rational(1, 2)
   println(new Rational(1, 2).add(new Rational(1, 2000000000)))
 
+  val r1 = new Rational(1, 2) add new Rational(2, 3);
+  val r2 = new Rational(1, 2) + new Rational(2, 3);
+
+
+  print(-r2)
 }
 
 
@@ -40,10 +45,12 @@ class Rational(x: Int, y: Int) {
   def add(that: Rational) =
     new Rational(numer * that.denom + denom * that.numer, denom * that.denom)
 
-  def neg = new Rational(-numer, denom)
+  def +(that: Rational) = add(that)
+
+  def unary_- = new Rational(-numer, denom)
 
   def sub(that: Rational) =
-    add(that.neg)
+    add(-that)
 
   def less(that: Rational) = this.numer * that.denom < that.numer * this.denom
 
