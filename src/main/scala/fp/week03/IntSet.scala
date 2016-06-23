@@ -13,10 +13,10 @@ abstract class IntSet {
   def value: Int = 0
 }
 
-class Empty extends IntSet {
+object Empty extends IntSet {
   override def contains(x: Int): Boolean = false
 
-  override def incl(x: Int): IntSet = new NonEmpty(x, new Empty, new Empty)
+  override def incl(x: Int): IntSet = new NonEmpty(x, Empty, Empty)
 
   override def toString = "."
 
@@ -42,7 +42,7 @@ class NonEmpty(elem: Int, left: IntSet, right: IntSet)
     val rl = left union right
     val u = rl union other
     u incl elem
-   }
+  }
 
   override def toString = " {" + left + elem + right + "} "
 
@@ -52,13 +52,30 @@ class NonEmpty(elem: Int, left: IntSet, right: IntSet)
 
 object IntSet {
   def main(args: Array[String]) {
-    val treeSet1 = new NonEmpty(3, new Empty, new Empty) incl 2
-    val treeSet2 = new NonEmpty(4, new Empty, new Empty) incl 5 incl 6
+    val treeSet1 = new NonEmpty(2, Empty, Empty) incl 1
+    val treeSet2 = new NonEmpty(3, Empty, Empty) incl 4
     println(treeSet1)
     println(treeSet2)
     val t3 = treeSet1 union treeSet2
     println(t3.value)
     println(t3)
+
+    //val l: List1[IntSet] = List1(new NonEmpty(1, Empty, Empty))
+
+    val a: Array[NonEmpty] = Array(new NonEmpty(1, Empty, Empty))
+    //val b: Array[IntSet] = a
+
+    type A = IntSet => NonEmpty
+    type B = NonEmpty => IntSet
+
+    def apply(f: A): Unit =  {
+
+    }
+    //val b: B = x => x
+
+    //apply(x: IntSet => x)
+
   }
+
 }
 
