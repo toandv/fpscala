@@ -1,5 +1,7 @@
 package fp.week05
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader
+
 import scala.annotation.tailrec
 import scala.collection.mutable.ListBuffer
 import scala.math.Ordering.StringOrdering
@@ -128,6 +130,48 @@ object Lists {
     }
   }
 
+
+  def scaleList(xs: List[Int], factor: Int): List[Int] = xs match {
+    case Nil => xs
+    case y :: ys => y * factor :: scaleList(ys, factor)
+  }
+
+  def scaleList1(xs: List[Int], factor: Int): List[Int] = {
+    @tailrec
+    def transformList(listAcc: ListBuffer[Int], ys: List[Int]): List[Int] = {
+      ys match {
+        case Nil => listAcc.toList
+        case z :: zs => transformList(listAcc += (z * factor), zs)
+      }
+    }
+    transformList(ListBuffer(), xs)
+  }
+
+
+  // List("a", "a", "b", "b", "a") packed to
+  // List(List("a", "a"), List("b", "b"), List("a"))
+
+  def pack[T](xs: List[T]): List[List[T]] = xs match {
+    case Nil => Nil
+    case x :: xs1 => {
+      val (first, rest) = xs span (e => e == x)
+      first :: pack(rest)
+    }
+  }
+
+  def encode[T](xs: List[T]): List[(T, Int)] = xs match {
+    case Nil => Nil
+    case x :: xs1 => {
+      val (first, rest) = xs span (e => e == x)
+      val encoded = (first.head, first.length)
+      encoded :: encode(rest)
+    }
+  }
+
+  def encode1[T](xs: List[T]): List[(T, Int)] = {
+    pack(xs) map (ys => (ys.head, ys.length))
+  }
+
   def main(args: Array[String]): Unit = {
     val list: List[Int] = List(1, 2, 3)
     println(last(list))
@@ -138,7 +182,22 @@ object Lists {
     println(removeAt1(1, list))
     println(msort(List(2, 4, 5, 1, 2)))
     println(msort1(List(2, 4, 5, 1, 2)))
-    implicit object strOrd  extends StringOrdering
+    implicit object strOrd extends StringOrdering
     println(msort1(List("a", "x", "b", "c")))
+
+    val ints = ListBuffer[Int]()
+
+    for (i <- 0 to 100000) {
+      ints += i
+    }
+
+    scaleList1(ints.toList, 2)
+
+    val chars = List("a", "a", "b", "b", "a")
+    println(pack(chars))
+    println(chars span (e => e == "a"))
+    println(encode(chars))
+    println(encode1(chars))
+
   }
 }
